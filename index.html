@@ -1,0 +1,145 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <section id="imageContainer"></section>
+    <button onclick="decr()">previse</button>
+    <button onclick="incr()">next</button>
+    <script>
+      const images = [
+        { name: "image 1", image: "./1.jpg" },
+        { name: "image 2", image: "./2.jpg" },
+        { name: "image 3", image: "./3.jpg" },
+        { name: "image 4", image: "./4.jpg" },
+        { name: "image 5", image: "./5.jpg" },
+        { name: "image 6", image: "./6.jpg" },
+        { name: "image 7", image: "./7.jpg" },
+      ];
+
+      let count = 0;
+
+      function incr() {
+        if (count < images.length -1) {
+            const h1 = document.getElementById("elo");
+          const img = document.getElementById("ela");
+          h1.remove();
+          img.remove();
+          count++;
+          imagesfun(count);
+        }
+        
+      }
+      function decr() {
+        if (count > 0) {
+            const h1 = document.getElementById("elo");
+          const img = document.getElementById("ela");
+          count--;
+          h1.remove();
+          img.remove();
+          console.log(count);
+          imagesfun(count);
+        }
+      }
+
+      const imageContainer1 = document.getElementById("imageContainer");
+
+      const imagediv = document.createElement("div");
+
+      const imagesfun = (num) => {
+        const currentImage = Object.values(images[count]);
+
+        imagediv.innerHTML += `
+        <h1 id="elo">${currentImage[0]}</h1>
+        <img id="ela" src=${currentImage[1]} alt="" width="100%" height="80%"  />
+            
+        `;
+        const h1 = document.getElementById("elo");
+          const img = document.getElementById("ela");
+        img.style.objectFit="cover"
+      };
+      imageContainer1.appendChild(imagediv);
+      imagediv.style.height="80vh"
+      imagesfun(count);
+    </script>
+  </body>
+</html> -->
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Image Gallery</title>
+</head>
+<body>
+    <section id="imageContainer"></section>
+    <button onclick="decr()">Previous</button>
+    <button onclick="incr()">Next</button>
+
+    <script>
+        const images = [
+            { name: "image 1", image: "./1.jpg" },
+            { name: "image 2", image: "./2.jpg" },
+            { name: "image 3", image: "./3.jpg" },
+            { name: "image 4", image: "./4.jpg" },
+            { name: "image 5", image: "./5.jpg" },
+            { name: "image 6", image: "./6.jpg" },
+            { name: "image 7", image: "./7.jpg" },
+        ];
+
+        let count = 0;
+
+        const imageContainer = document.getElementById("imageContainer");
+        imageContainer.style.height="80vh"
+
+        function displayImage(num) {
+            const currentImage = images[num];
+
+            const h1 = document.createElement("h1");
+            h1.textContent = currentImage.name;
+
+            const img = document.createElement("img");
+            img.src = currentImage.image;
+            img.alt = "";
+            img.style.width = "100%";
+            img.style.height = "90%";
+            img.style.objectFit = "cover";
+            console.log(imageContainer.firstChild);
+
+            // Remove existing content
+            while (imageContainer.firstChild) {
+                imageContainer.removeChild(imageContainer.firstChild);
+            }
+
+            // Append new content
+            imageContainer.appendChild(h1);
+            imageContainer.appendChild(img);
+        }
+
+        function incr() {
+            if (count < images.length - 1) {
+                count++;
+                displayImage(count);
+            }
+        }
+
+        function decr() {
+            if (count > 0) {
+                count--;
+                displayImage(count);
+            }
+        }
+
+        // Initial display
+        displayImage(count);
+    </script>
+</body>
+</html>
+
